@@ -8,6 +8,8 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip explosionSound;
     [SerializeField] AudioClip successSound;
 
+    [SerializeField] ParticleSystem explosionEffect;
+
     AudioSource audioSource;
 
     bool isTransitioning = false;
@@ -52,6 +54,8 @@ public class CollisionHandler : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(explosionSound);
+        explosionEffect.Play();
+        MakeInvisible();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
@@ -71,5 +75,16 @@ public class CollisionHandler : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    void MakeInvisible()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.name != "Explosion")
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
     }
 }
