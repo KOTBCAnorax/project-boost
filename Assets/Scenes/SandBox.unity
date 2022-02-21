@@ -571,26 +571,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
-    - target: {fileID: 7662896801766533955, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
-      propertyPath: m_Height
-      value: 2.0421524
-      objectReference: {fileID: 0}
-    - target: {fileID: 7662896801766533955, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
-      propertyPath: m_Radius
-      value: 0.4567985
-      objectReference: {fileID: 0}
-    - target: {fileID: 7662896801766533955, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
-      propertyPath: m_Center.x
-      value: -0.037465096
-      objectReference: {fileID: 0}
-    - target: {fileID: 7662896801766533955, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
-      propertyPath: m_Center.y
-      value: 0.41881996
-      objectReference: {fileID: 0}
-    - target: {fileID: 7662896801766533955, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
-      propertyPath: m_Center.z
-      value: -0.012642443
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32eaf35a1d1afce4e8a0c8f6e8eb123d, type: 3}
 --- !u!1001 &7466827257564445435

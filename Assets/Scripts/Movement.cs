@@ -6,6 +6,9 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 100f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem LeftBoosterParticle;
+    [SerializeField] ParticleSystem MainBoosterParticle;
+    [SerializeField] ParticleSystem RightBoosterParticle;
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -18,24 +21,42 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        ProcessThrust();
+        ProcessInput();
     }
 
-    void ProcessThrust()
+    void ProcessInput()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             ApplyThrust(Vector3.up);
+            PlayThrustingEffect(MainBoosterParticle);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            StopThrustingEffect(MainBoosterParticle);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             ApplyThrust(Vector3.left);
+            PlayThrustingEffect(RightBoosterParticle);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            StopThrustingEffect(RightBoosterParticle);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             ApplyThrust(Vector3.right);
+            PlayThrustingEffect(LeftBoosterParticle);
         }
-        else if (audioSource.isPlaying)
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            StopThrustingEffect(LeftBoosterParticle);
+        }
+
+        if (!Input.anyKey)
         {
             audioSource.Stop();
         }
@@ -47,6 +68,22 @@ public class Movement : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngine);
+        }
+    }
+
+    void PlayThrustingEffect(ParticleSystem particle)
+    {
+        if (!particle.isPlaying)
+        {
+            particle.Play();
+        }
+    }
+
+    void StopThrustingEffect(ParticleSystem particle)
+    {
+        if (particle.isPlaying)
+        {
+            particle.Stop();
         }
     }
 }
